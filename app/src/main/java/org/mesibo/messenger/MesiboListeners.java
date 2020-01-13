@@ -46,6 +46,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -54,10 +55,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.mesibo.calls.MesiboVideoCallFragment;
+import com.mesibo.calls.MesiboAudioCallFragment;
 import com.mesibo.contactutils.*;
 
 import com.mesibo.api.Mesibo;
-import org.mesibo.messenger.gcm.MesiboRegistrationIntentService;
+import org.mesibo.messenger.fcm.MesiboRegistrationIntentService;
 import com.mesibo.calls.MesiboCall;
 import com.mesibo.uihelper.WelcomeScreen;
 import com.mesibo.uihelper.ILoginInterface;
@@ -268,6 +271,12 @@ public class MesiboListeners implements Mesibo.ConnectionListener, ILoginInterfa
                 UIManager.launchUserSettings(context);
             } else if(item == R.id.action_calllogs) {
                 MesiboCall.getInstance().launchCallLogs(context, 0);
+            } else if(item == R.id.mesibo_share) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, AppConfig.getConfig().invite.subject);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, AppConfig.getConfig().invite.text);
+                context.startActivity(Intent.createChooser(sharingIntent, AppConfig.getConfig().invite.title));
             }
         } 
 	else { // from messaging box
@@ -364,6 +373,21 @@ public class MesiboListeners implements Mesibo.ConnectionListener, ILoginInterfa
     public boolean MesiboCall_onNotify(int type, Mesibo.UserProfile profile, boolean video) {
 
         return true;
+    }
+
+    @Override
+    public MesiboVideoCallFragment MesiboCall_getVideoCallFragment(Mesibo.UserProfile userProfile) {
+        return null;
+    }
+
+    @Override
+    public MesiboAudioCallFragment MesiboCall_getAudioCallFragment(Mesibo.UserProfile userProfile) {
+        return null;
+    }
+
+    @Override
+    public Fragment MesiboCall_getIncomingAudioCallFragment(Mesibo.UserProfile userProfile) {
+        return null;
     }
 
     @Override
@@ -511,13 +535,16 @@ public class MesiboListeners implements Mesibo.ConnectionListener, ILoginInterfa
     }
 
 
+
     @Override
     public void Mesibo_onGCMToken(String token) {
         SampleAPI.setGCMToken(token);
     }
 
     @Override
-    public void Mesibo_onGCMMessage(Bundle data, boolean inService) {
+    public void Mesibo_onGCMMessage(/*Bundle data,*/ boolean inService) {
         SampleAPI.onGCMMessage(inService);
     }
+
+
 }

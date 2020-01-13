@@ -1,6 +1,8 @@
 ## Mesibo Messenger for Android
 Mesibo Messenger is an open-source app with real-time messaging, voice and video call features. This repo contains the source code for Mesibo Messenger App for Android. The GitHub repository for iOS version is [here](https://github.com/mesibo/messenger-app-ios).
 
+**Note**: We are working on a new version which can be found [here](https://github.com/mesibo/messenger-app-android-beta). This beta allows complete customization of Messaging, audio and video calling UI. 
+
 ### Features
 - One-on-one messaging and Group chat
 - High quality voice and video calling
@@ -11,13 +13,14 @@ Mesibo Messenger is an open-source app with real-time messaging, voice and video
 - Online status (presence) and real-time profile update
 - Push notifications
 
-Latest versions are also available through Google Play Store and Apple App Store:
+Latest versions are also available through Google Play Store and Apple App Store :
 
 <a href="https://play.google.com/store/apps/details?id=com.mesibo.mesiboapplication"><img
   alt="Get it on Google Play" height="80"
-  src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" /></a> <a href="https://itunes.apple.com/us/app/mesibo-realtime-messaging-voice-video/id1222921751"><img
-  alt="Get it on Apple App Store" height="80"
-  src="https://mesibo.com/documentation/images/app/apple_app_store.png" /></a>
+  src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" /></a> 
+  <a href="https://itunes.apple.com/us/app/mesibo-realtime-messaging-voice-video/id1222921751">
+  <img alt="Get it on Apple App Store" height="80"
+  src="https://media.mesibo.com/files/mesibo/appstore.png" /></a>
 
 ## Downloading the Source Code
 
@@ -66,6 +69,9 @@ These apps also use following third party libraries/services.
 
 - [Facebook AccountKit](https://www.accountkit.com/) for the Phone Verification
 - [Google Maps](https://developers.google.com/maps/documentation/) and [Google Places](https://cloud.google.com/maps-platform/places/) SDKs for Geolocation integration 
+
+# Backend
+The backend code is here https://github.com/mesibo/messenger-app-backend
 
 ## Documentation & Tutorials
 
